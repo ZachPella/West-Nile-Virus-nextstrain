@@ -108,23 +108,14 @@ Adds geographic coordinates to sequence metadata based on location information.
 ### new_pathoplexus_data.py
 Processes and integrates new data from Pathoplexus into the existing dataset.
 
-## Contributing
-
-Describe your contribution guidelines, if applicable.
-
-## License
-
-Specify your license information.
-
 ## Contact
 
-Provide contact information for questions or issues.
+Provide contact zpella@unmc.edu for any questions
 
 ## Acknowledgments
 
 - Nextstrain team
-- Your institution/lab
-- Any funding sources or collaborators
+- UNMC Dr. Fauver Lab
 
 ## Citation
 
