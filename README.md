@@ -1,10 +1,46 @@
 # West Nile Virus Nextstrain Build - Nebraska County and US State Analysis
 
-This repository contains an automated Nextstrain build for analyzing West Nile Virus (WNV) genomic data at both Nebraska county and United States state levels. The pipeline automatically updates with new data on a monthly basis.
+This repository contains an automated Nextstrain build for analyzing West Nile Virus (WNV) genomic data at both Nebraska county and United States state levels. Based on the WestNile 4K Project template, this build is customized for Nebraska county-level analysis with automated monthly updates.
 
 ## Overview
 
 This Nextstrain build processes WNV genomic sequences and associated metadata to create interactive visualizations for tracking WNV evolution and spread across Nebraska counties and US states.
+
+## Prerequisites
+
+1. Install conda
+2. Install augur and its dependencies:
+```bash
+git clone git@github.com:nextstrain/augur.git
+cd augur
+conda env create -f environment.yml
+export NCBI_EMAIL=<YOUR_EMAIL_HERE>
+```
+
+3. Enable the conda environment:
+```bash
+conda activate augur
+```
+
+4. Install auspice:
+```bash
+conda install -c conda-forge nodejs
+npm install --global auspice
+```
+
+5. Verify installations:
+```bash
+augur -h
+auspice -h
+```
+
+## Installation
+
+1. Clone this repository:
+```bash
+git clone https://github.com/ZachPella/West-Nile-Virus-nextstrain.git
+cd WNV_build_test_gitversion
+```
 
 ## Directory Structure
 
@@ -21,59 +57,70 @@ WNV_build_test_gitversion/
 ├── scripts/               # Analysis scripts
 │   ├── add_lat_long_to_metadata.py
 │   └── new_pathoplexus_data.py
-├── results/              # Output directory
+├── results/              # Build output files
 └── Snakefile            # Pipeline definition
 ```
 
-## Prerequisites
+## Running the Build
 
-- Nextstrain CLI
-- Snakemake
-- Python 3.x
+### Basic Usage
 
-## Installation
-
-1. Clone this repository:
+1. Clean previous build files:
 ```bash
-git clone https://github.com/ZachPella/West-Nile-Virus-nextstrain.git
-cd WNV_build_test_gitversion
+snakemake clean
 ```
 
-2. Install required dependencies:
-```bash
-conda env create -f environment.yml  # If you have an environment file
-# or
-pip install -r requirements.txt      # If you have a requirements file
-```
-
-## Usage
-
-### Running the Pipeline
-
-To execute the complete pipeline:
-
+2. Run the complete build:
 ```bash
 snakemake --cores all
 ```
 
+The build process takes approximately 40 minutes to complete.
+
+### Individual Steps
+
+You can run specific steps separately:
+
+1. Parse metadata and add authors:
+```bash
+snakemake --printshellcmds --force parse
+snakemake --printshellcmds --force add_authors
+```
+
+2. Generate colors:
+```bash
+snakemake --printshellcmds --force create_colors
+```
+
+3. Generate lat-longs:
+```bash
+snakemake --printshellcmds --force create_lat_longs
+```
+
+4. Export final files:
+```bash
+snakemake --printshellcmds --force export
+```
+
 ### Automated Updates
 
-The pipeline is configured to automatically update monthly with new data. The update process includes:
-1. Fetching new sequence data
-2. Updating metadata
-3. Regenerating visualizations
+This build is configured to automatically update monthly with new data. The automation process:
+1. Fetches new sequence data
+2. Updates metadata
+3. Runs the complete build pipeline
+4. Regenerates visualizations
 
-### Output
+## Visualization
 
-The pipeline generates:
-- Phylogenetic trees
-- Geographic visualizations
-- Temporal analyses
-- Interactive web visualizations (via Auspice)
+To view the results locally:
+```bash
+auspice view --datasetDir ./auspice
+```
+Then open http://localhost:4000 in your browser.
 
-## Configuration
+## Data Format
 
-### Metadata Format
+### Metadata Structure
 
 The `metadata.tsv` file contains the following columns:
 - strain: Unique identifier for each sequence
@@ -94,29 +141,19 @@ The `metadata.tsv` file contains the following columns:
 - paper_url: URL to publication
 - latitude: Geographic latitude
 - longitude: Geographic longitude
-- county: County-level information
-
-### Geographic Data
-
-Geographic coordinates are managed in `config/lat_longs_clean.tsv` and automatically integrated into the metadata using `scripts/add_lat_long_to_metadata.py`.
+- county: County-level information (specific to Nebraska sequences)
 
 ## Scripts
 
 ### add_lat_long_to_metadata.py
-Adds geographic coordinates to sequence metadata based on location information.
+Adds geographic coordinates to sequence metadata based on location information, with special handling for Nebraska counties.
 
 ### new_pathoplexus_data.py
 Processes and integrates new data from Pathoplexus into the existing dataset.
 
-## Contact
-
-Provide contact zpella@unmc.edu for any questions
-
 ## Acknowledgments
 
+- Based on the WestNile 4K Project template
 - Nextstrain team
 - UNMC Dr. Fauver Lab
 
-## Citation
-
-If others should cite this work, provide citation information here.
