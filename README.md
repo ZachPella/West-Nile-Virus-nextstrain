@@ -30,13 +30,12 @@ WNV_build_test_gitversion/
 - Nextstrain CLI
 - Snakemake
 - Python 3.x
-- Required Python packages (list any specific dependencies)
 
 ## Installation
 
 1. Clone this repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/ZachPella/West-Nile-Virus-nextstrain.git
 cd WNV_build_test_gitversion
 ```
 
