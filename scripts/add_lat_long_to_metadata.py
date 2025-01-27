@@ -98,8 +98,8 @@ def main():
     """Main function to run the script."""
     try:
         updater = LocationDataUpdater(
-            '/home/fauverlab/nextstrain/WNV_build_test/config/lat_longs_clean.tsv',
-            '/home/fauverlab/nextstrain/WNV_build_test/data/metadata.tsv'
+            '/config/lat_longs_clean.tsv',
+            '/data/metadata.tsv'
         )
         updater.update_metadata()
     except Exception as e:
