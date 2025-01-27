@@ -1,0 +1,4 @@
+Building DAG of jobs...
+MissingInputException in line 1 of /home/fauverlab/nextstrain/WNV_build_test/Snakefile:
+Missing input files for rule all:
+results/WNV_NA.json

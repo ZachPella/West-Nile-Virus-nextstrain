@@ -1,0 +1,34 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	ancestral
+	1	export
+	1	refine
+	1	traits
+	1	translate
+	6
+
+[Mon Jan  6 12:48:37 2025]
+rule refine:
+    input: results/tree_raw.nwk, results/aligned.fasta, data/updated_metadata.tsv
+    output: results/tree.nwk, results/branch_lengths.json
+    log: logs/refine.log
+    jobid: 2
+
+[Mon Jan  6 13:04:52 2025]
+Finished job 2.
+1 of 6 steps (17%) done
+
+[Mon Jan  6 13:04:52 2025]
+rule ancestral:
+    input: results/tree.nwk, results/aligned.fasta
+    output: results/nt_muts.json
+    log: logs/ancestral.log
+    jobid: 4
+
+RuleException in line 96 of /home/fauverlab/nextstrain/WNV_build_test/Snakefile:
+NameError: The name 'inference' is unknown in this context. Please make sure that you defined that variable. Also note that braces not used for variable access have to be escaped by repeating them, i.e. {{print $1}}

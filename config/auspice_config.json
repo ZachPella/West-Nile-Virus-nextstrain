@@ -1,0 +1,52 @@
+{
+  "title": "Nextstrain WNV",
+  "maintainers": [
+    {"name": "Joseph Fauver", "url": "fauverlab.com"}
+  ],
+  "build_url": "https://github.com/nextstrain/zika-tutorial",
+  "colorings": [
+    {
+      "key": "gt",
+      "title": "Genotype",
+      "type": "categorical"
+    },
+    {
+      "key": "num_date",
+      "title": "Date",
+      "type": "continuous"
+    },
+    {
+      "key": "author",
+      "title": "Author",
+      "type": "categorical"
+    },
+    {
+      "key": "state",
+      "title": "State",
+      "type": "categorical"
+    },
+    {
+      "key": "county",
+      "title": "Nebraska County",
+      "type": "categorical"
+    }
+  ],
+  "geo_resolutions": [
+    "county",
+    "state"
+  ],
+  "panels": [
+    "tree",
+    "map",
+    "entropy"
+  ],
+  "display_defaults": {
+    "color_by": "county",
+    "map_triplicate": false,
+    "geo_resolution": "county"
+  },
+  "filters": [
+    "county",
+    "state"
+  ]
+}

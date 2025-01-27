@@ -1,0 +1,69 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	all
+	1	ancestral
+	1	export
+	1	refine
+	1	traits
+	1	translate
+	6
+
+[Tue Dec 31 10:54:18 2024]
+rule refine:
+    input: results/tree_raw.nwk, results/aligned.fasta, data/updated_metadata.tsv
+    output: results/tree.nwk, results/branch_lengths.json
+    log: logs/refine.log
+    jobid: 2
+
+
+        augur refine             --tree results/tree_raw.nwk             --alignment results/aligned.fasta             --metadata data/updated_metadata.tsv             --output-tree results/tree.nwk             --output-node-data results/branch_lengths.json             --timetree             --coalescent opt             --date-confidence             --date-inference marginal             --clock-filter-iqd 4 2> logs/refine.log
+        
+[Tue Dec 31 11:12:29 2024]
+Finished job 2.
+1 of 6 steps (17%) done
+
+[Tue Dec 31 11:12:29 2024]
+rule ancestral:
+    input: results/tree.nwk, results/aligned.fasta
+    output: results/nt_muts.json
+    log: logs/ancestral.log
+    jobid: 4
+
+
+        augur ancestral             --tree results/tree.nwk             --alignment results/aligned.fasta             --output-node-data results/nt_muts.json             --inference joint 2> logs/ancestral.log
+        
+[Tue Dec 31 11:13:21 2024]
+Finished job 4.
+2 of 6 steps (33%) done
+
+[Tue Dec 31 11:13:21 2024]
+rule translate:
+    input: results/tree.nwk, results/nt_muts.json, config/WNV_reference.gb
+    output: results/aa_muts.json
+    log: logs/translate.log
+    jobid: 5
+
+
+        augur translate             --tree results/tree.nwk             --ancestral-sequences results/nt_muts.json             --reference-sequence config/WNV_reference.gb             --output-node-data results/aa_muts.json 2> logs/translate.log
+        
+[Tue Dec 31 11:13:27 2024]
+Finished job 5.
+3 of 6 steps (50%) done
+
+[Tue Dec 31 11:13:27 2024]
+rule traits:
+    input: results/tree.nwk, data/updated_metadata.tsv
+    output: results/traits.json
+    log: logs/traits.log
+    jobid: 3
+
+
+        augur traits             --tree results/tree.nwk             --metadata data/updated_metadata.tsv             --output-node-data results/traits.json             --columns region country             --confidence 2> logs/traits.log
+        
+[Tue Dec 31 11:13:28 2024]
+Finished job 3.
+4 of 6 steps (67%) done

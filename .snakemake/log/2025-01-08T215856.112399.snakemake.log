@@ -1,0 +1,17 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job counts:
+	count	jobs
+	1	clean
+	1
+
+[Wed Jan  8 21:58:56 2025]
+rule clean:
+    jobid: 0
+
+[Wed Jan  8 21:58:56 2025]
+Finished job 0.
+1 of 1 steps (100%) done
+Complete log: /home/fauverlab/nextstrain/WNV_build_test/.snakemake/log/2025-01-08T215856.112399.snakemake.log

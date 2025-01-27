@@ -1,0 +1,86 @@
+WARNING: Requested color-by field 'author' does not exist and will not be used as a coloring or exported.
+
+WARNING: These values for trait state were not specified in the colors file you provided:
+	us-vi, bra/bahia, bra/es, mex/chh, col/ant, isr/d, mex/tam, bra/sao-paulo, arg/b, mex/tab, vgb, bra/minas-gerais, mex/bcn, mex/son, can/qc, bra/ceara, bra/piaui.
+	Auspice will create colors for them.
+
+WARNING: county->Red Willow did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: county->Scotts Bluff did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: county->Box Butte did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->VGB did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->MEX/TAM did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->COL/ANT did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->MEX/SON did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->ARG/B did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->BRA/Sao-Paulo did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->BRA/Bahia did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->BRA/Piaui did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->CAN/QC did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->MEX/CHH did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->US-VI did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->MEX/TAB did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->ISR/D did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->BRA/Ceara did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->BRA/ES did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->BRA/Minas-Gerais did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+WARNING: state->MEX/BCN did not have an associated lat/long value (matching performed in lower case). Auspice won't be able to display this location.
+
+	WARNING:  "Red Willow", a value of the geographic resolution "county", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "Scotts Bluff", a value of the geographic resolution "county", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "Box Butte", a value of the geographic resolution "county", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "VGB", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "MEX/TAM", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "COL/ANT", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "MEX/SON", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "ARG/B", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "BRA/Sao-Paulo", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "BRA/Bahia", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "BRA/Piaui", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "CAN/QC", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "MEX/CHH", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "US-VI", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "MEX/TAB", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "ISR/D", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "BRA/Ceara", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "BRA/ES", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "BRA/Minas-Gerais", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice
+	WARNING:  "MEX/BCN", a value of the geographic resolution "state", appears in the tree but not in the metadata.
+		This will cause transmissions & demes involving this location not to be displayed in Auspice

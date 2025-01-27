@@ -1,0 +1,106 @@
+Building DAG of jobs...
+Using shell: /home/fauverlab/.nextstrain/runtimes/conda/env/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+align                  1
+all                    1
+ancestral              1
+export                 1
+filter                 1
+index_sequences        1
+refine                 1
+traits                 1
+translate              1
+tree                   1
+total                 10
+
+Select jobs to execute...
+
+[Thu Dec 19 13:39:12 2024]
+Job 6: 
+        Creating an index of sequence composition for filtering.
+        
+Reason: Missing output files: results/sequence_index.tsv
+
+
+        augur index             --sequences data/sequences.fasta             --output results/sequence_index.tsv
+        
+[Thu Dec 19 13:39:13 2024]
+Finished job 6.
+1 of 10 steps (10%) done
+Select jobs to execute...
+
+[Thu Dec 19 13:39:13 2024]
+Job 5: 
+        Filtering to
+          - 20 sequence(s) per country year month
+          - from 1999 onwards
+          - excluding strains in config/dropped_strains.txt
+        
+Reason: Missing output files: results/filtered.fasta; Input files updated by another job: results/sequence_index.tsv
+
+
+        augur filter             --sequences data/sequences.fasta             --sequence-index results/sequence_index.tsv             --metadata data/metadata.tsv             --exclude config/dropped_strains.txt             --output results/filtered.fasta             --group-by country year month             --sequences-per-group 20             --min-date 1999
+        
+[Thu Dec 19 13:39:14 2024]
+Finished job 5.
+2 of 10 steps (20%) done
+Select jobs to execute...
+
+[Thu Dec 19 13:39:14 2024]
+Job 4: 
+        Aligning sequences to config/WNV_reference.gb
+          - filling gaps with N
+        
+Reason: Missing output files: results/aligned.fasta; Input files updated by another job: results/filtered.fasta
+
+
+        augur align             --sequences results/filtered.fasta             --reference-sequence config/WNV_reference.gb             --output results/aligned.fasta             --fill-gaps
+        
+[Thu Dec 19 13:39:15 2024]
+Finished job 4.
+3 of 10 steps (30%) done
+Select jobs to execute...
+
+[Thu Dec 19 13:39:15 2024]
+Job 3: Building tree
+Reason: Missing output files: results/tree_raw.nwk; Input files updated by another job: results/aligned.fasta
+
+
+        augur tree             --alignment results/aligned.fasta             --output results/tree_raw.nwk
+        
+[Thu Dec 19 13:39:17 2024]
+Finished job 3.
+4 of 10 steps (40%) done
+Select jobs to execute...
+
+[Thu Dec 19 13:39:17 2024]
+Job 2: 
+        Refining tree
+          - estimate timetree
+          - use opt coalescent timescale
+          - estimate marginal node dates
+          - filter tips more than 4 IQDs from clock expectation
+        
+Reason: Missing output files: results/branch_lengths.json, results/tree.nwk; Input files updated by another job: results/aligned.fasta, results/tree_raw.nwk
+
+
+        augur refine             --tree results/tree_raw.nwk             --alignment results/aligned.fasta             --metadata data/metadata.tsv             --output-tree results/tree.nwk             --output-node-data results/branch_lengths.json             --timetree             --coalescent opt             --date-confidence             --date-inference marginal             --clock-filter-iqd 4
+        
+[Thu Dec 19 13:39:18 2024]
+Error in rule refine:
+    jobid: 2
+    input: results/tree_raw.nwk, results/aligned.fasta, data/metadata.tsv
+    output: results/tree.nwk, results/branch_lengths.json
+    shell:
+        
+        augur refine             --tree results/tree_raw.nwk             --alignment results/aligned.fasta             --metadata data/metadata.tsv             --output-tree results/tree.nwk             --output-node-data results/branch_lengths.json             --timetree             --coalescent opt             --date-confidence             --date-inference marginal             --clock-filter-iqd 4
+        
+        (one of the commands exited with non-zero exit code; note that snakemake uses bash strict mode!)
+
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-12-19T133912.171687.snakemake.log
