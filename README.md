@@ -116,7 +116,7 @@ To view the results locally:
 ```bash
 auspice view --datasetDir ./auspice
 ```
-Then open http://localhost:4000 in your browser.
+Then open the link that is immeditaely provided to you in your browser. The link should be something like http://localhost:4000 
 
 ## Data Format
 
