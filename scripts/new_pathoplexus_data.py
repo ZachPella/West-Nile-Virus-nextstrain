@@ -197,7 +197,7 @@ def update_metadata(metadata_file: str, url: str) -> int:
 
 if __name__ == "__main__":
     try:
-        metadata_file = '/home/fauverlab/nextstrain/WNV_build_test/data/metadata.tsv'
+        metadata_file = '/data/metadata.tsv'
         url = "https://pathoplexus.org/west-nile/search?geoLocCountry=USA&visibility_geoLocLatitude=true&visibility_geoLocLongitude=true&visibility_lineage=false&visibility_authors=true&visibility_geoLocAdmin1=false&visibility_geoLocCity=true&column_geoLocLatitude=true&column_geoLocLongitude=true&column_geoLocAdmin1=true&column_geoLocCity=false&column_geoLocAdmin2=false&column_hostNameCommon=false&column_hostNameScientific=true"
         
         new_count = update_metadata(metadata_file, url)
