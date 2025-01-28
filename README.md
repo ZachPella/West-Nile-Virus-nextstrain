@@ -46,19 +46,19 @@ cd WNV_build_test_gitversion
 
 ```
 WNV_build_test_gitversion/
-├── config/                  # Configuration files
+├── config/                 # Configuration files
 │   ├── WNV_reference.gb    # WNV reference genome
 │   ├── auspice_config.json # Visualization configuration
 │   ├── colors_clean.py     # Color scheme definitions
 │   └── lat_longs_clean.tsv # Geographic coordinates
 ├── data/                   # Input data directory
-│   ├── metadata.tsv       # Sequence metadata
-│   └── sequences.fasta    # Genomic sequences
-├── scripts/               # Analysis scripts
+│   ├── metadata.tsv        # Sequence metadata
+│   └── sequences.fasta     # Genomic sequences
+├── scripts/                # Analysis scripts
 │   ├── add_lat_long_to_metadata.py
 │   └── new_pathoplexus_data.py
-├── results/              # Build output files
-└── Snakefile            # Pipeline definition
+├── results/               # Build output files
+└── Snakefile              # Pipeline definition
 ```
 
 ## Running the Build
