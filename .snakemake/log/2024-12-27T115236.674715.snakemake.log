@@ -1,3 +1,0 @@
-NameError in line 167 of /home/fauverlab/nextstrain/WNV_build_test/Snakefile:
-name 'file' is not defined
-  File "/home/fauverlab/nextstrain/WNV_build_test/Snakefile", line 167, in <module>

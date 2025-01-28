@@ -1,2 +1,4 @@
+.snakemake/
+West-Nile-Virus-nextstrain.git/
 /results/nt_muts.json
 /results/aligned.fasta.mldist

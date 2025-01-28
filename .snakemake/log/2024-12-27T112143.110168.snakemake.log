@@ -1,3 +1,0 @@
-AttributeError in line 46 of /home/fauverlab/nextstrain/WNV_build_test/Snakefile:
-'Rules' object has no attribute 'filter'
-  File "/home/fauverlab/nextstrain/WNV_build_test/Snakefile", line 46, in <module>
