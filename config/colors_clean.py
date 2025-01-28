@@ -6,7 +6,24 @@ import pandas as pd
 from matplotlib.colors import LinearSegmentedColormap, hex2color
 
 def interpolate_hex_colors(color1, color2, n_colors):
-    """Interpolate between two hex colors."""
+    """
+    Interpolate between two hex colors.
+
+    Parameters
+    ----------
+    color1 : str
+        The first hex color string.
+    color2 : str
+        The second hex color string.
+    n_colors : int
+        The number of intermediate colors to generate.
+
+    Returns
+    -------
+    list of str
+        A list of interpolated hex colors.
+    """
+    
     c1 = np.array(hex2color(color1))
     c2 = np.array(hex2color(color2))
     mix = np.linspace(0, 1, n_colors)
@@ -14,7 +31,21 @@ def interpolate_hex_colors(color1, color2, n_colors):
     return [mpl.colors.rgb2hex(c1 * (1 - m) + c2 * m) for m in mix]
 
 def create_color_scheme():
-    # Regional state groupings
+    """
+    Create color scheme for different regions and Nebraska counties.
+
+    This function defines regional state groupings and assigns color schemes for each region,
+    including a viridis color scheme for Nebraska counties.
+
+    Returns
+    -------
+    dict, dict, list, list
+        - A dictionary mapping regions to state codes.
+        - A dictionary mapping regions to color schemes.
+        - A list of Nebraska county names.
+        - A list of colors generated using the viridis colormap for Nebraska counties.
+    """
+    
     states = {
         "west": ["AK", "WA", "ID", "MT", "OR", "NV", "WY", "CA", "UT", "CO", "HI"],
         "southwest": ["AZ", "NM", "OK", "TX"],
@@ -56,7 +87,30 @@ def create_color_scheme():
     return states, states_cols, ne_counties, county_colors
 
 def write_colors_file(output_path, states, states_cols, ne_counties, county_colors, metadata_path):
-    """Write the color scheme to a TSV file based on states and counties in metadata."""
+    """
+    Write the color scheme to a TSV file based on states and counties in metadata.
+
+    Parameters
+    ----------
+    output_path : str
+        The file path to save the output color scheme.
+    states : dict
+        A dictionary mapping regions to state codes.
+    states_cols : dict
+        A dictionary mapping regions to color schemes.
+    ne_counties : list
+        A list of Nebraska county names.
+    county_colors : list
+        A list of colors generated using the viridis colormap for Nebraska counties.
+    metadata_path : str
+        The file path to the metadata file.
+
+    Raises
+    ------
+    ValueError
+        If the metadata file does not contain a 'state' column.
+    """
+    
     try:
         metadata = pd.read_csv(metadata_path, sep='\t')
         if 'state' not in metadata.columns:
@@ -91,6 +145,13 @@ def write_colors_file(output_path, states, states_cols, ne_counties, county_colo
                 fh.write(f"county\t{county}\t{color}\n")
 
 def main():
+    """
+    Main function to generate color scheme for WNV visualization.
+
+    Parses arguments for metadata and output file paths, then generates the color scheme and 
+    writes it to the specified output file.
+    """
+    
     parser = argparse.ArgumentParser(description='Generate color scheme for WNV visualization')
     parser.add_argument('metadata', help='Path to input metadata file')
     parser.add_argument('output', help='Path to output colors TSV file')
