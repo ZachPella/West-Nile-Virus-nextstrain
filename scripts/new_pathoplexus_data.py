@@ -82,7 +82,7 @@ STATE_ABBREVIATIONS = {
 
 @lru_cache(maxsize=128)
 def extract_state(text: str) -> Optional[str]:
- """
+     """
     Extract the state name from a given text string.
 
     Parameters
@@ -113,7 +113,7 @@ def extract_state(text: str) -> Optional[str]:
     return None
 
 def fetch_url_data(url: str, timeout: int = 30) -> Dict:
- """
+     """
     Fetch data from a given URL and extract relevant information.
 
     Parameters
@@ -175,7 +175,7 @@ def fetch_url_data(url: str, timeout: int = 30) -> Dict:
         raise
 
 def process_new_accession(acc: str, url_data: Dict, original_columns: list) -> Dict:
-"""
+    """
     Process data for a new accession and generate metadata row.
 
     Parameters
@@ -217,7 +217,7 @@ def process_new_accession(acc: str, url_data: Dict, original_columns: list) -> D
     }
 
 def update_metadata(metadata_file: str, url: str) -> int:
-"""
+    """
     Update the metadata file by adding new accessions fetched from the URL.
 
     Parameters
