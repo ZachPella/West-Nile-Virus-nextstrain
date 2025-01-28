@@ -82,7 +82,20 @@ STATE_ABBREVIATIONS = {
 
 @lru_cache(maxsize=128)
 def extract_state(text: str) -> Optional[str]:
-    """Extract state name from text with caching"""
+ """
+    Extract the state name from a given text string.
+
+    Parameters
+    ----------
+    text : str
+        The input text in which the state name or abbreviation should be searched.
+
+    Returns
+    -------
+    Optional[str]
+        The state name if found, otherwise None.
+    """
+    
     if not text:
         return None
         
@@ -100,7 +113,28 @@ def extract_state(text: str) -> Optional[str]:
     return None
 
 def fetch_url_data(url: str, timeout: int = 30) -> Dict:
-    """Fetch data from URL with proper error handling"""
+ """
+    Fetch data from a given URL and extract relevant information.
+
+    Parameters
+    ----------
+    url : str
+        The URL to fetch data from.
+    timeout : int, optional
+        The timeout in seconds for the request, default is 30.
+
+    Returns
+    -------
+    Dict
+        A dictionary containing the parsed data, including accession, collection date,
+        subdivision, and authors.
+
+    Raises
+    ------
+    Exception
+        If an error occurs during the request or data parsing, an exception is raised.
+    """
+    
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
     }
@@ -141,7 +175,26 @@ def fetch_url_data(url: str, timeout: int = 30) -> Dict:
         raise
 
 def process_new_accession(acc: str, url_data: Dict, original_columns: list) -> Dict:
-    """Process single accession data"""
+"""
+    Process data for a new accession and generate metadata row.
+
+    Parameters
+    ----------
+    acc : str
+        The accession number for the virus strain.
+    url_data : Dict
+        The dictionary containing parsed data from the URL.
+    original_columns : list
+        List of columns in the original metadata file.
+
+    Returns
+    -------
+    Dict
+        A dictionary representing a row of metadata with processed information.
+    """
+    
+    
+    
     subdivision = url_data[acc]['subdivision']
     state = extract_state(subdivision)
     state_abbr = STATE_ABBREVIATIONS.get(state, '')  # Get the abbreviated state
@@ -164,7 +217,27 @@ def process_new_accession(acc: str, url_data: Dict, original_columns: list) -> D
     }
 
 def update_metadata(metadata_file: str, url: str) -> int:
-    """Main function to update metadata"""
+"""
+    Update the metadata file by adding new accessions fetched from the URL.
+
+    Parameters
+    ----------
+    metadata_file : str
+        The file path to the existing metadata.
+    url : str
+        The URL to fetch the new accession data from.
+
+    Returns
+    -------
+    int
+        The number of new accessions added to the metadata.
+
+    Raises
+    ------
+    Exception
+        If there is an error updating the metadata, an exception is raised.
+    """
+    
     try:
         metadata_df = pd.read_csv(metadata_file, sep="\t")
         existing_accessions = set(metadata_df['accession'])
