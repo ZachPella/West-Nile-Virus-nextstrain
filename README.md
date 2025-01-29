@@ -1,159 +1,128 @@
-# West Nile Virus Nextstrain Build - Nebraska County and US State Analysis
+**🦟 West Nile Virus Detective: Track the Virus with Nextstrain! 🌍**  
 
-This repository contains an automated Nextstrain build for analyzing West Nile Virus (WNV) genomic data at both Nebraska county and United States state levels. Based on the WestNile 4K Project template, this build is customized for Nebraska county-level analysis with automated monthly updates.
+Hi there! This guide will help you use Nextstrain (a cool tool for tracking viruses 🕵️) to study West Nile Virus (WNV) in Nebraska and across the US. Think of it like a treasure map for viruses!  
 
-## Overview
+---
 
-This Nextstrain build processes WNV genomic sequences and associated metadata to create interactive visualizations for tracking WNV evolution and spread across Nebraska counties and US states.
+### **📦 What You Need**  
+1. **Your Tools**:  
+   - **Conda**: A magic backpack for your tools. You need to install it!  
+   - **Nextstrain Tools**: Augur and Auspice (they help analyze and visualize the virus!).  
 
-## Prerequisites
+2. **Inputs (Your Clues)**:  
+   - **Virus DNA Files** (`sequences.fasta`): A file with the virus’s DNA code.  
+   - **Virus Info** (`metadata.tsv`): A file with details about where and when the virus was found.  
 
-1. Install conda
-2. Install augur and its dependencies:
-```bash
-git clone git@github.com:nextstrain/augur.git
-cd augur
-conda env create -f environment.yml
-export NCBI_EMAIL=<YOUR_EMAIL_HERE>
-```
+---
 
-3. Enable the conda environment:
-```bash
-conda activate augur
-```
+### **🚀 Step-by-Step Instructions**  
 
-4. Install auspice:
-```bash
-conda install -c conda-forge nodejs
-npm install --global auspice
-```
+#### **Step 1: Set Up Your Magic Backpack (Conda)**  
+**Goal**: Install Conda and Nextstrain tools.  
 
-5. Verify installations:
-```bash
-augur -h
-auspice -h
-```
+1. **Install Conda**: Follow the official guide: [Conda Installation](https://docs.conda.io/en/latest/miniconda.html).  
+2. **Install Augur**:  
+   ```bash  
+   git clone git@github.com:nextstrain/augur.git  
+   cd augur  
+   conda env create -f environment.yml  
+   export NCBI_EMAIL=<YOUR_EMAIL_HERE>  
+   ```  
+3. **Activate Conda Environment**:  
+   ```bash  
+   conda activate augur  
+   ```  
+4. **Install Auspice**:  
+   ```bash  
+   conda install -c conda-forge nodejs  
+   npm install --global auspice  
+   ```  
+5. **Check Your Tools**:  
+   ```bash  
+   augur -h  
+   auspice -h  
+   ```  
+   *What happens?*: You’ll see help messages if everything is installed correctly!  
 
-## Installation
+---
 
-1. Clone this repository:
-```bash
-git clone https://github.com/ZachPella/West-Nile-Virus-nextstrain.git
-cd WNV_build_test_gitversion
-```
+#### **Step 2: Get the Virus Detective Kit (Clone the Repository)**  
+**Goal**: Download the West Nile Virus project.  
+```bash  
+git clone https://github.com/ZachPella/West-Nile-Virus-nextstrain.git  
+cd WNV_build_test_gitversion  
+```  
+*What happens?*: You’ll have a folder with all the tools and files you need!  
 
-## Directory Structure
+---
 
-```
-WNV_build_test_gitversion/
-├── config/                 # Configuration files
-│   ├── WNV_reference.gb    # WNV reference genome
-│   ├── auspice_config.json # Visualization configuration
-│   ├── colors_clean.py     # Color scheme definitions
-│   └── lat_longs_clean.tsv # Geographic coordinates
-├── data/                   # Input data directory
-│   ├── metadata.tsv        # Sequence metadata
-│   └── sequences.fasta     # Genomic sequences
-├── scripts/                # Analysis scripts
-│   ├── add_lat_long_to_metadata.py
-│   └── new_pathoplexus_data.py
-├── results/               # Build output files
-└── Snakefile              # Pipeline definition
-```
+#### **Step 3: Start the Virus Hunt! (Run the Build)**  
+**Goal**: Analyze the virus DNA and create cool maps and graphs!  
 
-## Running the Build
+1. **Clean Up**:  
+   ```bash  
+   snakemake clean  
+   ```  
+   *What happens?*: This removes old files to start fresh!  
 
-### Basic Usage
+2. **Run the Full Build**:  
+   ```bash  
+   snakemake --cores all  
+   ```  
+   *What happens?*: This takes about 40 minutes. It analyzes the virus DNA and creates results!  
 
-1. Clean previous build files:
-```bash
-snakemake clean
-```
+---
 
-2. Run the complete build:
-```bash
-snakemake --cores all
-```
+### **📂 What’s Inside the Project?**  
+```  
+WNV_build_test_gitversion/  
+├── config/                 🗺️ Maps and settings for the virus!  
+│   ├── WNV_reference.gb    (The virus’s DNA map)  
+│   ├── auspice_config.json (How to show the results)  
+│   ├── colors_clean.py     (Colors for the virus groups)  
+│   └── lat_longs_clean.tsv (Where the virus was found)  
+├── data/                   🧬 Virus DNA and info!  
+│   ├── metadata.tsv        (Details about the virus)  
+│   └── sequences.fasta     (The virus’s DNA code)  
+├── scripts/                🛠️ Tools for adding more info!  
+│   ├── add_lat_long_to_metadata.py (Adds locations to the virus info)  
+│   └── new_pathoplexus_data.py (Adds new virus data)  
+├── results/                📊 Your results will go here!  
+└── Snakefile               🐍 The recipe for the virus hunt!  
+```  
 
-The build process takes approximately 40 minutes to complete.
+---
 
-### Individual Steps
+### **🎁 What You’ll Get (Outputs!)**  
+1. **Interactive Maps**: See where the virus is spreading!  
+2. **Virus Family Trees**: Learn how the virus is changing over time!  
+3. **County-Level Data**: Track the virus in Nebraska counties!  
 
-You can run specific steps separately:
+---
 
-1. Parse metadata and add authors:
-```bash
-snakemake --printshellcmds --force parse
-snakemake --printshellcmds --force add_authors
-```
+### **🔍 View Your Results**  
+**Goal**: Open the results in your browser!  
+```bash  
+auspice view --datasetDir ./auspice  
+```  
+*What happens?*: A link will appear (like `http://localhost:4000`). Open it in your browser to see the virus maps and trees!  
 
-2. Generate colors:
-```bash
-snakemake --printshellcmds --force create_colors
-```
+---
 
-3. Generate lat-longs:
-```bash
-snakemake --printshellcmds --force create_lat_longs
-```
+### **⚠️ Troubleshooting Tips**  
+- **Missing Files**: Make sure your `sequences.fasta` and `metadata.tsv` files are in the `data/` folder!  
+- **Permissions**: Ask a grown-up to check if you can write to the folder.  
+- **Log Files**: If something goes wrong, check the `logs/` folder for clues!  
 
-4. Export final files:
-```bash
-snakemake --printshellcmds --force export
-```
+---
 
-### Automated Updates
+### **🌟 Credits**  
+- **Nextstrain Team**: [Nextstrain.org](https://nextstrain.org)  
+- **WestNile 4K Project**: The template for this project!  
+- **UNMC Dr. Fauver Lab**: For their awesome work on West Nile Virus!  
 
-This build is configured to automatically update monthly with new data. The automation process:
-1. Fetches new sequence data
-2. Updates metadata
-3. Runs the complete build pipeline
-4. Regenerates visualizations
+---
 
-## Visualization
+**You did it!** Now you’re a virus detective! 🎉 Share your maps and trees with the world!  
 
-To view the results locally:
-```bash
-auspice view --datasetDir ./auspice
-```
-Then open the link that is immeditaely provided to you in your browser. The link should be something like http://localhost:4000 
-
-## Data Format
-
-### Metadata Structure
-
-The `metadata.tsv` file contains the following columns:
-- strain: Unique identifier for each sequence
-- virus: Virus name
-- accession: Sequence accession number
-- date: Collection date
-- region: Geographic region
-- country: Country of collection
-- state: US state
-- division: Geographic division
-- city: City of collection
-- db: Database source
-- segment: Viral segment information
-- authors: Study authors
-- url: Related URL
-- title: Study title
-- journal: Journal of publication
-- paper_url: URL to publication
-- latitude: Geographic latitude
-- longitude: Geographic longitude
-- county: County-level information (specific to Nebraska sequences)
-
-## Scripts
-
-### add_lat_long_to_metadata.py
-Adds geographic coordinates to sequence metadata based on location information, with special handling for Nebraska counties.
-
-### new_pathoplexus_data.py
-Processes and integrates new data from Pathoplexus into the existing dataset.
-
-## Acknowledgments
-
-- Based on the WestNile 4K Project template
-- Nextstrain team
-- UNMC Dr. Fauver Lab
-
+*Note: Grown-ups might need to help install Conda or fix permissions!* 😊
