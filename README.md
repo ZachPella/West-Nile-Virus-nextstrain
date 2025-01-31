@@ -1,128 +1,117 @@
-**🦟 West Nile Virus Detective: Track the Virus with Nextstrain! 🌍**  
+📦 What You’ll Need
+Tools to Install:
 
-Hi there! This guide will help you use Nextstrain (a cool tool for tracking viruses 🕵️) to study West Nile Virus (WNV) in Nebraska and across the US. Think of it like a treasure map for viruses!  
+Conda: A package manager to organize your tools. Download here: Conda Installation Guide.
 
----
+Nextstrain Tools: Augur (for data analysis) and Auspice (for visualization).
 
-### **📦 What You Need**  
-1. **Your Tools**:  
-   - **Conda**: A magic backpack for your tools. You need to install it!  
-   - **Nextstrain Tools**: Augur and Auspice (they help analyze and visualize the virus!).  
+Input Files:
 
-2. **Inputs (Your Clues)**:  
-   - **Virus DNA Files** (`sequences.fasta`): A file with the virus’s DNA code.  
-   - **Virus Info** (`metadata.tsv`): A file with details about where and when the virus was found.  
+Virus Genetic Data (sequences.fasta): Contains RNA sequences of the virus.
 
----
+Virus Metadata (metadata.tsv): Includes details like collection dates and locations.
 
-### **🚀 Step-by-Step Instructions**  
+🚀 Step-by-Step Guide
+Step 1: Set Up Your Environment with Conda
+Goal: Install Conda and Nextstrain tools.
 
-#### **Step 1: Set Up Your Magic Backpack (Conda)**  
-**Goal**: Install Conda and Nextstrain tools.  
+Install Conda: Follow the official guide linked above.
 
-1. **Install Conda**: Follow the official guide: [Conda Installation](https://docs.conda.io/en/latest/miniconda.html).  
-2. **Install Augur**:  
-   ```bash  
-   git clone git@github.com:nextstrain/augur.git  
-   cd augur  
-   conda env create -f environment.yml  
-   export NCBI_EMAIL=<YOUR_EMAIL_HERE>  
-   ```  
-3. **Activate Conda Environment**:  
-   ```bash  
-   conda activate augur  
-   ```  
-4. **Install Auspice**:  
-   ```bash  
-   conda install -c conda-forge nodejs  
-   npm install --global auspice  
-   ```  
-5. **Check Your Tools**:  
-   ```bash  
-   augur -h  
-   auspice -h  
-   ```  
-   *What happens?*: You’ll see help messages if everything is installed correctly!  
+Install Augur:
 
----
+bash
+Copy
+git clone https://github.com/nextstrain/augur.git  # Clones the Augur repository  
+cd augur  
+conda env create -f environment.yml  # Creates a Conda environment  
+export NCBI_EMAIL=<YOUR_EMAIL_HERE>  # Required for data downloads  
+Activate the Conda Environment:
 
-#### **Step 2: Get the Virus Detective Kit (Clone the Repository)**  
-**Goal**: Download the West Nile Virus project.  
-```bash  
+bash
+Copy
+conda activate augur  
+Install Auspice:
+
+bash
+Copy
+conda install -c conda-forge nodejs  # Installs Node.js  
+npm install --global auspice  # Installs Auspice globally  
+Verify Installations:
+
+bash
+Copy
+augur -h  # Displays help menu for Augur  
+auspice -h  # Displays help menu for Auspice  
+Expected Outcome: Help menus confirm both tools are installed.
+
+Step 2: Download the Project Files
+Goal: Get the West Nile Virus analysis toolkit.
+
+bash
+Copy
 git clone https://github.com/ZachPella/West-Nile-Virus-nextstrain.git  
 cd WNV_build_test_gitversion  
-```  
-*What happens?*: You’ll have a folder with all the tools and files you need!  
+What Happens: This downloads the project files into a folder named WNV_build_test_gitversion.
 
----
+Step 3: Run the Analysis Pipeline
+Goal: Generate interactive visualizations of the virus’s spread.
 
-#### **Step 3: Start the Virus Hunt! (Run the Build)**  
-**Goal**: Analyze the virus DNA and create cool maps and graphs!  
+Clear Previous Results (Optional):
 
-1. **Clean Up**:  
-   ```bash  
-   snakemake clean  
-   ```  
-   *What happens?*: This removes old files to start fresh!  
+bash
+Copy
+snakemake clean  # Removes old files to start fresh  
+Execute the Analysis:
 
-2. **Run the Full Build**:  
-   ```bash  
-   snakemake --cores all  
-   ```  
-   *What happens?*: This takes about 40 minutes. It analyzes the virus DNA and creates results!  
+bash
+Copy
+snakemake --cores all  # Runs the full pipeline (takes ~40 minutes)  
+What Happens: The pipeline analyzes genetic data, builds evolutionary trees, and prepares maps.
 
----
-
-### **📂 What’s Inside the Project?**  
-```  
+📂 Project Structure Explained
+Copy
 WNV_build_test_gitversion/  
-├── config/                 🗺️ Maps and settings for the virus!  
-│   ├── WNV_reference.gb    (The virus’s DNA map)  
-│   ├── auspice_config.json (How to show the results)  
-│   ├── colors_clean.py     (Colors for the virus groups)  
-│   └── lat_longs_clean.tsv (Where the virus was found)  
-├── data/                   🧬 Virus DNA and info!  
-│   ├── metadata.tsv        (Details about the virus)  
-│   └── sequences.fasta     (The virus’s DNA code)  
-├── scripts/                🛠️ Tools for adding more info!  
-│   ├── add_lat_long_to_metadata.py (Adds locations to the virus info)  
-│   └── new_pathoplexus_data.py (Adds new virus data)  
-├── results/                📊 Your results will go here!  
-└── Snakefile               🐍 The recipe for the virus hunt!  
-```  
+├── config/                 # Configuration files  
+│   ├── WNV_reference.gb    # Reference genome for analysis  
+│   ├── auspice_config.json # Visualization settings  
+│   ├── colors_clean.py     # Color schemes for virus groups  
+│   └── lat_longs_clean.tsv # Geographic coordinates  
+├── data/                   # Input data  
+│   ├── metadata.tsv        # Virus sample details  
+│   └── sequences.fasta     # Genetic sequences  
+├── scripts/                # Custom scripts for data processing  
+├── results/                # Output files (generated after analysis)  
+└── Snakefile               # Workflow instructions for Snakemake  
+📊 Expected Outputs
+Interactive Maps: Visualize the geographic spread of WNV.
 
----
+Evolutionary Trees: Explore how virus strains are related over time.
 
-### **🎁 What You’ll Get (Outputs!)**  
-1. **Interactive Maps**: See where the virus is spreading!  
-2. **Virus Family Trees**: Learn how the virus is changing over time!  
-3. **County-Level Data**: Track the virus in Nebraska counties!  
+County-Level Insights: Track WNV activity in Nebraska counties.
 
----
+🔍 View Your Results
+Goal: Launch a local web server to explore results.
 
-### **🔍 View Your Results**  
-**Goal**: Open the results in your browser!  
-```bash  
+bash
+Copy
 auspice view --datasetDir ./auspice  
-```  
-*What happens?*: A link will appear (like `http://localhost:4000`). Open it in your browser to see the virus maps and trees!  
+What Happens: A link (e.g., http://localhost:4000) will appear. Open it in your browser to interact with the data!
 
----
+⚠️ Troubleshooting Tips
+Missing Files: Confirm sequences.fasta and metadata.tsv are in the data/ folder.
 
-### **⚠️ Troubleshooting Tips**  
-- **Missing Files**: Make sure your `sequences.fasta` and `metadata.tsv` files are in the `data/` folder!  
-- **Permissions**: Ask a grown-up to check if you can write to the folder.  
-- **Log Files**: If something goes wrong, check the `logs/` folder for clues!  
+Permission Issues: Ensure you have write access to the project directory.
 
----
+Errors: Check the logs/ folder for error details. Contact your IT support if needed.
 
-### **🌟 Credits**  
-- **Nextstrain Team**: [Nextstrain.org](https://nextstrain.org)  
-- **WestNile 4K Project**: The template for this project!  
-- **UNMC Dr. Fauver Lab**: For their awesome work on West Nile Virus!  
+🌟 Credits
+Nextstrain Team: Nextstrain.org
 
----
+WestNile 4K Project: Original project framework.
 
-**You did it!** Now you’re a virus detective! 🎉 Share your maps and trees with the world!  
+UNMC Dr. Fauver Lab: For their research on West Nile Virus.
 
-*Note: Grown-ups might need to help install Conda or fix permissions!* 😊
+Congratulations! You’ve successfully mapped the spread of West Nile Virus. Share your findings with colleagues or explore other viruses on Nextstrain!
+
+Note: Some steps (e.g., Conda setup) may require assistance from your IT team. 😊
+
