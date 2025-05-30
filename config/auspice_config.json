@@ -6,6 +6,35 @@
   "build_url": "https://github.com/nextstrain/zika-tutorial",
   "colorings": [
     {
+      "key": "Region",
+      "title": "Region",
+      "type": "categorical",
+      "scale": [
+        ["Northeast", "#1f77b4"],
+        ["South", "#e31a1c"],
+        ["West", "#ffff33"],
+        ["Midwest", "#f781bf"],
+        ["NE_East", "#1b9e77"],
+        ["NE_Central", "#d95f02"],
+        ["NE_West", "#7570b3"]
+      ]
+    },
+    {
+      "key": "state",
+      "title": "State",
+      "type": "categorical"
+    },
+    {
+      "key": "county",
+      "title": "Nebraska County",
+      "type": "categorical"
+    },
+    {
+      "key": "Species",
+      "title": "Mosquito Species",
+      "type": "categorical"
+    },
+    {
       "key": "gt",
       "title": "Genotype",
       "type": "categorical"
@@ -19,16 +48,6 @@
       "key": "author",
       "title": "Author",
       "type": "categorical"
-    },
-    {
-      "key": "state",
-      "title": "State",
-      "type": "categorical"
-    },
-    {
-      "key": "county",
-      "title": "Nebraska County",
-      "type": "categorical"
     }
   ],
   "geo_resolutions": [
@@ -41,12 +60,14 @@
     "entropy"
   ],
   "display_defaults": {
-    "color_by": "county",
+    "color_by": "Region",
     "map_triplicate": false,
-    "geo_resolution": "county"
+    "geo_resolution": "state"
   },
   "filters": [
+    "Region",
+    "state", 
     "county",
-    "state"
+    "Species"
   ]
 }
