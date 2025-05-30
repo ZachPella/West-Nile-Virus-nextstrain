@@ -5,16 +5,16 @@ wildcard_constraints:
 # File paths
 files = {
     'sequences': "data/sequences.fasta",
-    'metadata': "data/metadata.tsv",
+    'metadata': "data/updated_metadata.tsv",  # Updated to use the new metadata file
     'reference': "config/WNV_reference.gb",
-    'colors_script': "config/colors_clean.py",  # Changed from colors TSV to Python script
+    'colors_script': "config/colors_clean.py",
     'lat_longs': "config/lat_longs_clean.tsv",
     'auspice_config': "config/auspice_config.json"
 }
 
 rule all:
     input:
-        "results/WNV_NA.json"
+        "auspice/WNV_NA_2025.json"  # Updated output file name to include 2025
 
 # Update metadata from Pathoplexus
 rule update_metadata:
@@ -31,7 +31,7 @@ rule add_lat_longs:
         metadata = rules.update_metadata.output.metadata,
         lat_longs = files['lat_longs']
     output:
-        metadata = "data/metadata_with_coords.tsv"
+        metadata = "data/metadata_with_coords_2025.tsv"  # Updated output file name
     log:
         "logs/add_lat_longs.log"
 
@@ -41,10 +41,10 @@ rule align:
         sequences = files['sequences'],
         reference = files['reference']
     output:
-        alignment = "results/aligned.fasta"
+        alignment = "results/aligned_2025.fasta"  # Updated output file name
     log:
         "logs/align.log"
-    threads: 4
+    threads: 14
     shell:
         """
         augur align \
@@ -60,14 +60,17 @@ rule tree:
     input:
         alignment = rules.align.output.alignment
     output:
-        tree = "results/tree_raw.nwk"
+        tree = "results/tree_raw_2025.nwk"  # Updated output file name
     log:
         "logs/tree.log"
+    threads: 14
     shell:
         """
-        iqtree -s {input.alignment} -m GTR -redo -nt 1
-        mv results/aligned.fasta.treefile {output.tree}
-        """
+	augur tree \
+	    --alignment {input.alignment} \
+	    --output {output.tree} \
+	    --nthreads {threads} 2> {log}
+"""
 
 # Refine tree and estimate dates
 rule refine:
@@ -76,8 +79,12 @@ rule refine:
         alignment = rules.align.output.alignment,
         metadata = files['metadata']
     output:
-        tree = "results/tree.nwk",
-        node_data = "results/branch_lengths.json"
+        tree = "results/tree_2025.nwk",  # Updated output file name
+        node_data = "results/branch_lengths_2025.json"  # Updated output file name
+    params:                           # <-- ADDED THIS SECTION
+        coalescent = "opt",
+        date_inference = "marginal",
+	clock_filter_iqd = 4
     log:
         "logs/refine.log"
     shell:
@@ -89,7 +96,11 @@ rule refine:
             --output-tree {output.tree} \
             --output-node-data {output.node_data} \
             --timetree \
+            --coalescent {params.coalescent} \
             --date-confidence \
+            --date-inference {params.date_inference} \
+	    --clock-filter-iqd {params.clock_filter_iqd} \
+	    2> {log}
         """
 
 # Reconstruct ancestral sequences
@@ -98,7 +109,7 @@ rule ancestral:
         tree = rules.refine.output.tree,
         alignment = rules.align.output.alignment
     output:
-        node_data = "results/nt_muts.json"
+        node_data = "results/nt_muts_2025.json"  # Updated output file name
     params:
         inference = "joint"
     log:
@@ -119,7 +130,7 @@ rule translate:
         node_data = rules.ancestral.output.node_data,
         reference = files['reference']
     output:
-        node_data = "results/aa_muts.json"
+        node_data = "results/aa_muts_2025.json"  # Updated output file name
     log:
         "logs/translate.log"
     shell:
@@ -137,9 +148,9 @@ rule traits:
         tree = rules.refine.output.tree,
         metadata = files['metadata']
     output:
-        node_data = "results/traits.json"
+        node_data = "results/traits_2025.json"  # Updated output file name
     params:
-        columns = "state county"
+        columns = "state county Region Species"  # Added Region to the columns
     log:
         "logs/traits.log"
     shell:
@@ -158,7 +169,7 @@ rule generate_colors:
         script = files['colors_script'],
         metadata = files['metadata']
     output:
-        colors = "results/colors.tsv"
+        colors = "results/colors_2025.tsv"  # Updated output file name
     log:
         "logs/generate_colors.log"
     shell:
@@ -175,11 +186,11 @@ rule export:
         traits = rules.traits.output.node_data,
         nt_muts = rules.ancestral.output.node_data,
         aa_muts = rules.translate.output.node_data,
-        colors = rules.generate_colors.output.colors,  # Changed to use generated colors
+        colors = rules.generate_colors.output.colors,
         lat_longs = files['lat_longs'],
         auspice_config = files['auspice_config']
     output:
-        auspice_json = "results/WNV_NA.json"
+        auspice_json = "auspice/WNV_NA_2025.json"  # Updated output file name
     log:
         "logs/export.log"
     shell:
@@ -188,11 +199,11 @@ rule export:
             --tree {input.tree} \
             --metadata {input.metadata} \
             --node-data {input.branch_lengths} {input.traits} {input.nt_muts} {input.aa_muts} \
-            --colors {input.colors} \
+	    --colors {input.colors} \
             --lat-longs {input.lat_longs} \
             --auspice-config {input.auspice_config} \
             --include-root-sequence \
-            --output {output.auspice_json} 2> {log}
+	    --output {output} 2> {log}
         """
 
 # Clean up
