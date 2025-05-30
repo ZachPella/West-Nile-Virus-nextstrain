@@ -49,13 +49,14 @@ state	WA	47.4009	-121.4905
 state	WV	38.4912	-80.9545
 state	WI	44.2685	-89.6165
 state	WY	42.7559	-107.3025
+state	ISR/D	31.7683	35.2137
 county	Adams	40.5594	-98.4608
 county	Antelope	42.1721	-98.0292
 county	Arthur	41.5683	-101.6824
 county	Banner	41.5818	-103.7419
 county	Blaine	41.9366	-99.8871
 county	Boone	41.6905	-98.0687
-county	Box-Butte	42.2475	-103.0899
+county	Box Butte	42.2475	-103.0899
 county	Boyd	42.8925	-98.7617
 county	Brown	42.4308	-99.9209
 county	Buffalo	40.7822	-99.0765
@@ -121,13 +122,13 @@ county	Phelps	40.5121	-99.3943
 county	Pierce	42.2523	-97.6008
 county	Platte	41.5759	-97.5066
 county	Polk	41.1761	-97.5649
-county	Red-Willow	40.1794	-100.4823
+county	Red Willow	40.1794	-100.4823
 county	Richardson	40.1314	-95.7789
 county	Rock	42.3639	-99.5148
 county	Saline	40.5291	-97.1533
 county	Sarpy	41.1199	-96.0325
 county	Saunders	41.2243	-96.6291
-county	Scotts-Bluff	41.8696	-103.6643
+county	Scotts Bluff	41.8696	-103.6643
 county	Seward	40.9063	-97.0985
 county	Sheridan	42.5246	-102.4463
 county	Sherman	41.2199	-98.9754
@@ -142,3 +143,15 @@ county	Wayne	42.2471	-97.0473
 county	Webster	40.1737	-98.4985
 county	Wheeler	41.9737	-98.5136
 county	York	40.8722	-97.5962
+state	ARG/B	-34.6118	-58.3960
+state	MEX/CHH	28.6353	-106.0889
+state	CAN/QC	46.8139	-71.2080
+state	MEX/SON	29.2972	-110.3309
+state	MEX/BCN	30.8406	-115.2838
+state	MEX/TAM	24.2669	-98.8363
+state	BRA/Bahia	-12.5797	-41.7007
+state	VGB	18.4207	-64.6399
+state	US-VI	18.3358	-64.8963
+state	MEX/TAB	17.8409	-92.6189
+state	COL/ANT	6.2442	-75.5812
+state	BRA/ES	-19.1834	-40.3089
